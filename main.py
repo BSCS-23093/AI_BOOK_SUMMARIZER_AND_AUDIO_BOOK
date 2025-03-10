@@ -1,5 +1,5 @@
 import streamlit as st
-from google import genai
+import google.generativeai as genai
 from gtts import gTTS
 import tempfile
 from langchain_ollama import OllamaLLM
@@ -160,88 +160,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# import streamlit as st
-# import pandas as pd
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# from PyPDF2 import PdfFileReader
-# import io
-# from llm_rag import parse_with_gemini, split_dom_content
-#
-# def process_pdf(file):
-#     pdf = PdfFileReader(file)
-#     text = ""
-#     for page_num in range(pdf.getNumPages()):
-#         page = pdf.getPage(page_num)
-#         text += page.extract_text()
-#     return text
-#
-# def process_csv(file):
-#     return pd.read_csv(file)
-#
-# def analyze_data(data):
-#     st.write("Data Analysis")
-#     st.write(data.describe())
-#
-#     st.write("Data Visualization")
-#     fig, ax = plt.subplots()
-#     sns.histplot(data, ax=ax)
-#     st.pyplot(fig)
-#
-# def main():
-#     st.title("Advanced File Analyzer and Visualizer")
-#
-#     uploaded_file = st.file_uploader("Upload a PDF or CSV file", type=["pdf", "csv"])
-#     parse_description = st.text_input("Enter the description for parsing the content")
-#
-#     if uploaded_file is not None and parse_description:
-#         if uploaded_file.type == "application/pdf":
-#             st.write("Processing PDF file...")
-#             text = process_pdf(uploaded_file)
-#             st.write("Extracted Text:")
-#             st.write(text)
-#             dom_chunks = split_dom_content(text)
-#             parsed_text = parse_with_gemini(dom_chunks, parse_description)
-#             st.write("Parsed Text:")
-#             st.write(parsed_text)
-#         elif uploaded_file.type == "text/csv":
-#             st.write("Processing CSV file...")
-#             data = process_csv(uploaded_file)
-#             st.write("Original Data:")
-#             st.write(data.head())
-#             analyze_data(data)
-#             dom_chunks = split_dom_content(data.to_csv(index=False))
-#             parsed_text = parse_with_gemini(dom_chunks, parse_description)
-#             st.write("Parsed Text:")
-#             st.write(parsed_text)
-#
-#             csv = data.to_csv(index=False).encode('utf-8')
-#             st.download_button(
-#                 label="Download Processed Data",
-#                 data=csv,
-#                 file_name='processed_data.csv',
-#                 mime='text/csv',
-#             )
-#
-# if __name__ == "__main__":
-#     main()
